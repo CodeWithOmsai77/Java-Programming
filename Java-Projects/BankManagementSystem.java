@@ -91,7 +91,7 @@ public class BankManagementSystem {
     }
 
     public static void main(String[] args) {
-        int choice;
+        int choice = -1;
 
         do {
             System.out.println("\n=== Bank Management System ===");

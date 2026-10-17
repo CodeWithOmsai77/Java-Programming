@@ -39,7 +39,7 @@ public class LibraryBookTracker {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int choice;
+        int choice = -1;
 
         do {
             System.out.println("\n=== Library Book Tracker ===");
