@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="../assets/java-learning-banner.svg" width="100%" alt="Java Learning Projects" />
+<img src="https://raw.githubusercontent.com/CodeWithOmsai77/Java-Learning/main/assets/java-learning-banner.svg" width="100%" alt="Java Learning Projects" />
 
 <p>
   <img src="https://img.shields.io/badge/Java-Console%20Applications-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java console applications" />
