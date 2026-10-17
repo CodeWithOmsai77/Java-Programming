@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/CodeWithOmsai77/Java-Learning/main/assets/java-learning-banner.svg" width="100%" alt="Java Learning Journey — Core Java and OOP" />
+<img src="https://raw.githubusercontent.com/CodeWithOmsai77/Java-Learning/main/assets/java-learning-banner-v2.svg" width="100%" alt="Java Learning Journey — Core Java and OOP" />
 
 <p>
   <img src="https://img.shields.io/badge/Java-Core%20Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Core Java" />

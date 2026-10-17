@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">Java Learning Journey</title>
+  <desc id="desc">A navy and violet programming banner with a Java coffee cup and code editor.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="0.55" stop-color="#312e81"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#fbbf24"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#ffffff" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="300" rx="24" fill="url(#background)"/>
+  <rect width="1200" height="300" rx="24" fill="url(#grid)"/>
+  <circle cx="1100" cy="36" r="185" fill="#f97316" opacity="0.08"/>
+  <circle cx="1030" cy="305" r="170" fill="#c4b5fd" opacity="0.1"/>
+  <path d="M810 0V54H875V89H952V126H1025" fill="none" stroke="#c4b5fd" stroke-width="2" stroke-opacity="0.45"/>
+  <path d="M790 300V252H860V220H925V186H1005" fill="none" stroke="#c4b5fd" stroke-width="2" stroke-opacity="0.35"/>
+  <g transform="translate(94 67)">
+    <circle cx="72" cy="78" r="70" fill="#0b1020" fill-opacity="0.55" stroke="#c4b5fd" stroke-width="3"/>
+    <path d="M45 43c35-17 53-9 35 5-21 16-3 21 19 30 27 11 6 28-18 31-28 3-45-7-27-17 18-9 42 1 32 9M64 30c25-12 36-1 20 9M86 24c19-7 26 4 12 11" fill="none" stroke="url(#accent)" stroke-linecap="round" stroke-width="5"/>
+    <path d="M43 118H104" stroke="#fb923c" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="205" y="95" font-family="Arial, Helvetica, sans-serif" font-size="17" letter-spacing="4" font-weight="700" fill="#c4b5fd">LEARN • PRACTISE • BUILD</text>
+  <text x="201" y="151" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800" fill="#ffffff">JAVA LEARNING</text>
+  <text x="204" y="200" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="800" fill="#fdba74">CORE JAVA + OOP</text>
+  <rect x="204" y="224" width="470" height="4" rx="2" fill="url(#accent)"/>
+  <text x="205" y="259" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#ede9fe">Numbered lessons • Simple console projects</text>
+  <g transform="translate(840 64)">
+    <rect width="284" height="170" rx="14" fill="#080d1a" fill-opacity="0.86" stroke="#c4b5fd" stroke-opacity="0.55"/>
+    <path d="M0 35H284" stroke="#c4b5fd" stroke-opacity="0.25"/>
+    <circle cx="20" cy="18" r="4" fill="#fb7185"/>
+    <circle cx="34" cy="18" r="4" fill="#fbbf24"/>
+    <circle cx="48" cy="18" r="4" fill="#34d399"/>
+    <text x="22" y="64" font-family="Consolas, monospace" font-size="15" fill="#fdba74">class Learning {</text>
+    <text x="39" y="91" font-family="Consolas, monospace" font-size="14" fill="#e9d5ff">public static void</text>
+    <text x="39" y="113" font-family="Consolas, monospace" font-size="14" fill="#93c5fd">main(String[] args)</text>
+    <text x="22" y="141" font-family="Consolas, monospace" font-size="15" fill="#fdba74">}</text>
+  </g>
+</svg>
