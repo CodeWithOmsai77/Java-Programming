@@ -3,90 +3,78 @@ import java.util.Scanner;
 public class Calculator {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        int choice;
 
-        while (true) {
-            System.out.println();
-            System.out.println("----Advance Calculator----");
-            System.out.println("1.Addition");
-            System.out.println("2.Subtraction");
-            System.out.println("3.multiplication");
-            System.out.println("4.Division");
-            System.out.println("5.Modular");
-            System.out.println("6.Power");
-            System.out.println("7.Square root");
-            System.out.println("8.Exit");
-
+        do {
+            System.out.println("\n---- Calculator ----");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Division");
+            System.out.println("5. Remainder");
+            System.out.println("6. Power");
+            System.out.println("7. Square root");
+            System.out.println("0. Exit");
             System.out.print("Choose an option: ");
-            int choice = in.nextInt();
 
-            if (choice == 8){
-                System.out.println("Calculator closed");
+            if (!in.hasNextInt()) {
+                System.out.println("Please enter a menu number.");
+                in.nextLine();
+                continue;
+            }
+            choice = in.nextInt();
+
+            if (choice == 0) {
+                System.out.println("Calculator closed.");
                 break;
             }
-            double num1, num2, result;
 
-            switch(choice) {
-                case 1:
-                    System.out.println("Enter two numbers: ");
-                    num1 = in.nextDouble();
-                    num2 = in.nextDouble();
-                    result = num1 + num2;
-                    System.out.println("Result: "+ result);
-                    break;
-
-                case 2:
-                    System.out.println("Enter two numbers: ");
-                    num1 = in.nextDouble();
-                    num2 = in.nextDouble();
-                    result = num1 - num2;
-                    System.out.println("Result: "+ result);
-                    break;
-
-                case 3:
-                    System.out.println("Enter two numbers: ");
-                    num1 = in.nextDouble();
-                    num2 = in.nextDouble();
-                    result = num1 * num2;
-                    System.out.println("Result: "+ result);
-                    break;
-
-                case 4:
-                    System.out.println("Enter two numbers: ");
-                    num1 = in.nextDouble();
-                    num2 = in.nextDouble();
-                    if (num2 == 0) {
-                        System.out.print("Number can't be divide by zero");
-                    }
-                    result = num1 / num2;
-                    System.out.println("Result: "+ result);
-                    break;
-
-                case 5:
-                    System.out.println("Enter two numbers: ");
-                    num1 = in.nextDouble();
-                    num2 = in.nextDouble();
-                    result = num1 % num2;
-                    System.out.println("Result: "+ result);
-                    break;
-
-                case 6:
-                    System.out.println("Enter base and exponent: ");
-                    num1 = in.nextDouble();
-                    num2 = in.nextDouble();
-                    result = Math.pow(num1, num2);
-                    System.out.println("Result: "+ result);
-                    break;
-
-                case 7:
-                    System.out.println("Enter a number: ");
-                    num1 = in.nextDouble();
-                    result = Math.sqrt(num1);
-                    System.out.println("Result: "+ result);
-                    continue;
-
-                default:
-                    System.out.println("Invalid choice");
+            if (choice == 7) {
+                System.out.print("Enter a number: ");
+                double value = in.nextDouble();
+                if (value < 0) {
+                    System.out.println("Square root of a negative number is not real.");
+                } else {
+                    System.out.println("Result: " + Math.sqrt(value));
+                }
+                continue;
             }
-        }
+
+            if (choice < 1 || choice > 6) {
+                System.out.println("Invalid choice.");
+                continue;
+            }
+
+            System.out.print("Enter two numbers: ");
+            double first = in.nextDouble();
+            double second = in.nextDouble();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Result: " + (first + second));
+                    break;
+                case 2:
+                    System.out.println("Result: " + (first - second));
+                    break;
+                case 3:
+                    System.out.println("Result: " + (first * second));
+                    break;
+                case 4:
+                    if (second == 0) System.out.println("Cannot divide by zero.");
+                    else System.out.println("Result: " + (first / second));
+                    break;
+                case 5:
+                    if (second == 0) System.out.println("Cannot use zero as the divisor.");
+                    else System.out.println("Result: " + (first % second));
+                    break;
+                case 6:
+                    System.out.println("Result: " + Math.pow(first, second));
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (true);
+
+        in.close();
     }
 }

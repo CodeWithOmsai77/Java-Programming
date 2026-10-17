@@ -1,177 +1,164 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-// Base class
 class Account {
-    protected int accountNumber;
-    protected String name;
+    protected final int accountNumber;
+    protected final String name;
     protected double balance;
 
-    // Constructor using 'this'
-    Account(int accountNumber, String name, double balance) {
+    Account(int accountNumber, String name, double openingBalance) {
         this.accountNumber = accountNumber;
         this.name = name;
-        this.balance = balance;
+        this.balance = openingBalance;
     }
 
-    // Deposit method
-    public void deposit(double amount) {
-        if (amount > 0) {
-            this.balance += amount;
-            System.out.println("Amount Deposited Successfully!");
+    void deposit(double amount) {
+        if (amount <= 0) {
+            System.out.println("Amount must be positive.");
         } else {
-            System.out.println("Invalid Amount!");
+            balance += amount;
+            System.out.println("Deposit successful.");
         }
     }
 
-    // Withdraw method
-    public void withdraw(double amount) {
-        if (amount > balance) {
-            System.out.println("Insufficient Balance!");
-        } else if (amount <= 0) {
-            System.out.println("Invalid Amount!");
+    void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Amount must be positive.");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance.");
         } else {
-            this.balance -= amount;
-            System.out.println("Withdrawal Successful!");
+            balance -= amount;
+            System.out.println("Withdrawal successful.");
         }
     }
 
-    // Display method
-    public void display() {
-        System.out.println("\n--- Account Details ---");
-        System.out.println("Account No: " + this.accountNumber);
-        System.out.println("Name      : " + this.name);
-        System.out.println("Balance   : ₹" + this.balance);
+    void display() {
+        System.out.println("Account: " + accountNumber);
+        System.out.println("Name: " + name);
+        System.out.printf("Balance: ₹%.2f%n", balance);
     }
 }
 
-// Derived class (Inheritance example)
 class SavingsAccount extends Account {
-    private double interestRate;
+    private final double interestRate;
 
-    SavingsAccount(int accNo, String name, double balance, double rate) {
-        super(accNo, name, balance);
-        this.interestRate = rate;
+    SavingsAccount(int accountNumber, String name, double openingBalance,
+                   double interestRate) {
+        super(accountNumber, name, openingBalance);
+        this.interestRate = interestRate;
     }
 
-    public void addInterest() {
-        double interest = this.balance * this.interestRate / 100;
-        this.balance += interest;
-        System.out.println("Interest Added: ₹" + interest);
+    void addInterest() {
+        double interest = balance * interestRate / 100.0;
+        balance += interest;
+        System.out.printf("Interest added: ₹%.2f%n", interest);
     }
 }
 
-// Main class
 public class BankManagementSystem {
-    static Scanner sc = new Scanner(System.in);
-    static ArrayList<Account> accounts = new ArrayList<>();
+    private static final Scanner in = new Scanner(System.in);
+    private static final ArrayList<SavingsAccount> accounts = new ArrayList<>();
 
-    // Create account
-    public static void createAccount() {
-        System.out.print("Enter Account Number: ");
-        int accNo = sc.nextInt();
-        sc.nextLine();
-
-        System.out.print("Enter Name: ");
-        String name = sc.nextLine();
-
-        System.out.print("Enter Initial Balance: ");
-        double balance = sc.nextDouble();
-
-        accounts.add(new SavingsAccount(accNo, name, balance, 5));
-        System.out.println("Account Created Successfully!");
-    }
-
-    // Find account
-    public static Account findAccount(int accNo) {
-        for (Account acc : accounts) {
-            if (acc.accountNumber == accNo) {
-                return acc;
-            }
+    private static SavingsAccount findAccount(int number) {
+        for (SavingsAccount account : accounts) {
+            if (account.accountNumber == number) return account;
         }
         return null;
+    }
+
+    private static void createAccount() {
+        System.out.print("Account number: ");
+        int number = in.nextInt();
+        in.nextLine();
+
+        if (findAccount(number) != null) {
+            System.out.println("That account number already exists.");
+            return;
+        }
+
+        System.out.print("Name: ");
+        String name = in.nextLine();
+
+        System.out.print("Opening balance: ");
+        double balance = in.nextDouble();
+        if (balance < 0) {
+            System.out.println("Opening balance cannot be negative.");
+            return;
+        }
+
+        accounts.add(new SavingsAccount(number, name, balance, 5.0));
+        System.out.println("Savings account created.");
     }
 
     public static void main(String[] args) {
         int choice;
 
         do {
-            System.out.println("\n====== BANK SYSTEM ======");
-            System.out.println("1. Create Account");
+            System.out.println("\n=== Bank Management System ===");
+            System.out.println("1. Create account");
             System.out.println("2. Deposit");
             System.out.println("3. Withdraw");
-            System.out.println("4. Display Account");
-            System.out.println("5. Add Interest");
+            System.out.println("4. Display account");
+            System.out.println("5. Add savings interest");
             System.out.println("0. Exit");
-            System.out.print("Enter choice: ");
+            System.out.print("Choice: ");
 
-            choice = sc.nextInt();
+            if (!in.hasNextInt()) {
+                System.out.println("Enter a menu number.");
+                in.nextLine();
+                continue;
+            }
+            choice = in.nextInt();
 
             switch (choice) {
-
-                case 1:
+                case 1: {
                     createAccount();
                     break;
-
-                case 2:
-                    System.out.print("Enter Account Number: ");
-                    int accNo = sc.nextInt();
-                    Account acc1 = findAccount(accNo);
-
-                    if (acc1 != null) {
-                        System.out.print("Enter Amount: ");
-                        double amt = sc.nextDouble();
-                        acc1.deposit(amt);
+                }
+                case 2: {
+                    System.out.print("Account number: ");
+                    SavingsAccount account = findAccount(in.nextInt());
+                    if (account == null) {
+                        System.out.println("Account not found.");
                     } else {
-                        System.out.println("Account Not Found!");
+                        System.out.print("Deposit amount: ");
+                        account.deposit(in.nextDouble());
                     }
                     break;
-
-                case 3:
-                    System.out.print("Enter Account Number: ");
-                    accNo = sc.nextInt();
-                    Account acc2 = findAccount(accNo);
-
-                    if (acc2 != null) {
-                        System.out.print("Enter Amount: ");
-                        double amt = sc.nextDouble();
-                        acc2.withdraw(amt);
+                }
+                case 3: {
+                    System.out.print("Account number: ");
+                    SavingsAccount account = findAccount(in.nextInt());
+                    if (account == null) {
+                        System.out.println("Account not found.");
                     } else {
-                        System.out.println("Account Not Found!");
+                        System.out.print("Withdrawal amount: ");
+                        account.withdraw(in.nextDouble());
                     }
                     break;
-
-                case 4:
-                    System.out.print("Enter Account Number: ");
-                    accNo = sc.nextInt();
-                    Account acc3 = findAccount(accNo);
-
-                    if (acc3 != null) {
-                        acc3.display();
-                    } else {
-                        System.out.println("Account Not Found!");
-                    }
+                }
+                case 4: {
+                    System.out.print("Account number: ");
+                    SavingsAccount account = findAccount(in.nextInt());
+                    if (account == null) System.out.println("Account not found.");
+                    else account.display();
                     break;
-
-                case 5:
-                    System.out.print("Enter Account Number: ");
-                    accNo = sc.nextInt();
-                    Account acc4 = findAccount(accNo);
-
-                    if (acc4 instanceof SavingsAccount) {
-                        ((SavingsAccount) acc4).addInterest();
-                    } else {
-                        System.out.println("Invalid Account Type!");
-                    }
+                }
+                case 5: {
+                    System.out.print("Account number: ");
+                    SavingsAccount account = findAccount(in.nextInt());
+                    if (account == null) System.out.println("Account not found.");
+                    else account.addInterest();
                     break;
-
+                }
                 case 0:
-                    System.out.println("Thank you for using the system!");
+                    System.out.println("Goodbye.");
                     break;
-
                 default:
-                    System.out.println("Invalid Choice!");
+                    System.out.println("Invalid choice.");
             }
-
         } while (choice != 0);
+
+        in.close();
     }
 }

@@ -1,0 +1,12 @@
+# Compiled Java classes and build output
+*.class
+out/
+build/
+target/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
