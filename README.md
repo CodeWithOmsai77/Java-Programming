@@ -176,3 +176,23 @@ Only the root README and `Java-Projects/README.md` are used as documentation pag
 **Understand the example · Run it · Change it · Build something with it**
 
 </div>
+
+
+## Compile and Run a Single Example
+
+From the repository root, compile a source file and run the generated class:
+
+```bash
+javac Java-Learning/01_Basics/JavaFundamentals.java
+java -cp Java-Learning/01_Basics JavaFundamentals
+```
+
+For programs that declare a package, include the package-aware output directory and use the fully qualified class name. Keep one public class per file, and ensure the public class name matches the filename.
+
+## Practice and Validation Checklist
+
+- [ ] Read the example and predict its output before running it.
+- [ ] Compile with `javac` and resolve compiler errors.
+- [ ] Run with normal, boundary and invalid inputs where applicable.
+- [ ] Modify one condition or input and explain the changed output.
+- [ ] Record the concept and any bug discovered in the relevant topic notes.
